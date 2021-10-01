@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerador de assinaturas para email</title>
+    <link rel="stylesheet" href="style.css?v<?php echo rand(0, 999999); ?>">
+</head>
+
+<body>
+<div id="app-vue">
+
+    <div class="section section-nome">
+        <div class="container">
+
+            <div class="form-esquerda">
+              <h2>Preencha suas informações abaixo:</h2>
+              
+              <div class="bloco-input">
+                  <label for="">Nome</label>
+                  <input type="text" v-model="nome">
+              </div>
+              <div class="bloco-input">
+                  <label for="">Cargo</label>
+                  <input type="text" v-model="cargo" >
+              </div>
+              <div class="bloco-input">
+                  <label for="">Telefone 1</label>
+                  <input type="text" v-model="telefone">
+              </div> 
+			  <div class="bloco-input">
+                  <label for="">Telefone 2</label>
+                  <input type="text" v-model="celular">
+              </div>
+            </div>
+
+            <div class="form-direita">
+
+                <h2 class="titulo-topo">Assinatura Formatada (Copie e cole no editor HTML)</h2>
+                <p>Copie de baixo para cima, a partir de dentro da borda:</p>
+
+                <div class="bordawhere">
+                    <div class="whereto" id="whereto">
+                        <table class="body-wrap" style="border-collapse: collapse; border-spacing: 0; width: 100%; margin: 0; padding: 0;">
+                          <tr style="margin: 0; padding: 0;">
+                            <td class="container" style="clear: both !important; display: block !important; max-width: 500px !important; margin: 0; padding: 0px; border: none;">
+                              <div class="content" style="display: block; padding: 20px 20px 20px 2px; line-height: 1.5;">
+							  	<!-- <img style="width: 100px; height: 25px;" :src="img_swap" alt="" width="100" height="25"> -->
+							  	<img style="width: 120px; height: 42px;" :src="img_swap" alt="" width="120" height="42">
+								<div>
+									<img style="width: 30px; height: 10px; display: block;" width="30" height="10" src="https://res.cloudinary.com/caleidosdev/image/upload/c_mpad,h_10,w_30/v1611677770/vazio_wqhsub.png" alt="">
+								</div>								
+                                <p style="font-family: Arial,Helvetica,Geneva,sans-serif; color: #000; font-size: 15px; margin: 0; padding: 0; font-weight: bold;">{{nome}}</p>  
+								<p style="font-family: Arial,Helvetica,Geneva,sans-serif; color: #7A7423; font-size: 13px; margin: 0; padding: 0; font-weight: regular;">{{cargo}}</p>
+
+								<div>
+									<img style="width: 30px; height: 10px; display: block;" width="30" height="10" src="https://res.cloudinary.com/caleidosdev/image/upload/c_mpad,h_10,w_30/v1611677770/vazio_wqhsub.png" alt="">
+								</div>
+
+                                <p style="font-family: Arial,Helvetica,Geneva,sans-serif; color: #000000; font-size: 13px; margin: 0; padding: 0; line-height: 16px;" v-html="telefoneHTML"></p>
+
+								<div>
+									<img style="width: 30px; height: 10px; display: block;" width="30" height="10" src="https://res.cloudinary.com/caleidosdev/image/upload/c_mpad,h_10,w_30/v1611677770/vazio_wqhsub.png" alt="">
+								</div>
+
+								<p style="font-family: Arial,Helvetica,Geneva,sans-serif; color: #000000; font-size: 13px; margin: 0; padding: 0;"><a href="https://falconi.com/" target="_blank" style="text-decoration: none; color: #000000; font-weight: regular;">falconi.com</a></p>
+
+                                <p style="font-family: Arial,Helvetica,Geneva,sans-serif; color: #9B9C9C; font-size: 12px; margin: 0; padding: 0; margin-top: 5px;"><a class="icone-inline" target="_blank" href="https://www.instagram.com/falconioficial/?hl=pt-br"><img style="width: 16px; height: 16px;" width="16" height="16" src="https://caleidoswormhole.nyc3.cdn.digitaloceanspaces.com/icone-instagram@2x.png" alt=""></a> <a target="_blank" class="icone-inline" href="https://www.linkedin.com/company/falconi-oficial/?originalSubdomain=br"><img style="width: 16px; height: 16px;" width="16" height="16" src="https://caleidoswormhole.nyc3.digitaloceanspaces.com/icone-linkedin@2x.png" alt=""></a></p>
+                              </div>
+                            </td>
+                          </tr>  
+                        </table>
+                    </div>
+                </div>
+
+
+                <br><br>
+
+                <h2 class="titulo-topo">Assinatura em Imagem</h2>
+
+                <button @click.prevent="geraImagem()">Clique para gerar ou atualizar a imagem</button>
+
+                <p v-if="!msgimg"><strong>Clique na botão acima para gerar a imagem da assinatura neste espaço. Após clicar no botão, clique na imagem com o botão direito e selecione "Salvar imagem como...".</strong> Você poderá usar esta imagem em seu software de e-mail e inseri-la em sua assinatura.</p>
+
+                <p v-if="msgimg"><strong>Clique na imagem abaixo com o botão direito e selecione "Salvar imagem como...".</strong> Você poderá usar esta imagem em seu software de e-mail e inseri-la em sua assinatura.</p>
+                <div class="bloco-canvas" id="herecanvas">
+                  
+                </div>
+
+
+                <h2 class="titulo-topo">Instruções</h2>
+                <p>A utilização do gerador é bem simples: após inserir suas informações, você deverá copiar a assinatura e inseri-la em seu cliente de email (Gmail ou Outlook, por exemplo). Cada cliente de email tem instruções próprias para inserir uma assinatura, que podem ser acessadas pelos links abaixo.</p>
+                <p>A Assinatura Formatada é utilizada na maioria dos casos, mas para garantir que o layout da assinatura não seja alterado recomendamos a utilização da Assinatura em Imagem.</p>
+
+                <h2 class="titulo-topo">Links Úteis</h2>
+                <ul>
+                    <li><a href="https://support.mozilla.org/pt-BR/kb/assinaturas">Thunderbird</a></li>
+                    <li><a href="https://support.google.com/mail/answer/8395?co=GENIE.Platform%3DDesktop&hl=pt-BR" target="_blank">Gmail</a></li>
+                    <li><a href="https://support.office.com/pt-br/article/criar-e-adicionar-uma-assinatura-a-mensagens-8ee5d4f4-68fd-464a-a1c1-0e1c80bb27f2#ID0EAACAAA=Vers%C3%B5es_mais_recentes" target="_blank">Outlook</a></li>
+                    <li><a href="https://office365brasil.wordpress.com/2014/12/15/criando-assinatura-de-email-no-outlook-online/" target="_blank">Outlook Web</a></li>
+                    <li><a href="https://support.apple.com/pt-br/guide/mail/mail11943/mac" target="_blank">Mail (Mac)</a></li>
+                </ul>
+            </div> <!-- form-direita -->
+        </div>
+    </div>
+
+</div> <!-- app-vue -->
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.15/vue.js"></script>
+<script src="es6-promise.auto.js"></script>
+<script src="html2canvas.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="main.js?v2"></script>
+
+</body>
+</html>
