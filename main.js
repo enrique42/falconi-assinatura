@@ -8,8 +8,8 @@ function afterLoad(){
     var url_atual = document.URL.substr(0,document.URL.lastIndexOf('/'));
     console.log(url_atual);
 
-	var logo_anim = url_atual + '/logo-falconi-animado-2.gif';
-	var logo_maior = url_atual + '/logo-falconi-rev@2x.png';
+	var logo_anim = url_atual + '/GIF_Falconi_e-mail_V03.gif';
+	var logo_maior = url_atual + '/GIF_Falconi_e-mail_V03.gif';
 
     var vue_login = new Vue({
       el: '#app-vue',
